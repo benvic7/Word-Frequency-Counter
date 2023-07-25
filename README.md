@@ -1,103 +1,37 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=10198157&assignment_repo_type=AssignmentRepo)
-# Lab 3 - Word Count Problem Description
+# Word Frequency Counter
 
-Ben Vicinelli
+## Description
+This program reads a text file and calculates the number of times each word appears in the file. The program then returns a new file listing the count for each word sorted by frequency. The file names are provided as a command-line arguments.
 
-Be sure to run the following command after creating your program file **lab3.c** to have Git track your source code file and upload your program to your repository for grading. **Do not** commit and upload and binary files to your assignment's repository.
+## Author
+- Ben Vicinelli
+- Date: Feb. 8, 2023
 
-```
-git add lab3.c
-```
+## Features
+- Uses structs and pointers for word-frequency pairs: each word is represented as a character array and its corresponding frequency is stored as an integer in dynamically allocated memory.
+- Implements bubble sort to sort words by frequency: the program uses the bubble sort algorithm to efficiently arrange words in descending order based on their frequency.
+- Proper Memory Management: the program dynamically allocates and deallocates memory for words and data structures to avoid memory leaks and handle variable-sized inputs efficiently.
 
-Understanding the frequency of words used in a body of text can be useful for various purposes. For example given a text, word frequency analysis is often used to determine authorship or the nature of the text. For this lab you will write a program to determine the word frequency of a text file.
+## Functionality
+### `process_characters(char filename[], char output[])`
+This function processes each character from the input file, extracts words, and calculates their frequencies. It uses pointers and dynamic memory allocation to store words and their counts in the struct array.
 
-## Word Count
+### `is_found(char buf[], struct WordFreq **wfpp, int size)`
+Checks if a word has already been seen in the struct array. It uses pointers to efficiently access the words for comparison.
 
-We are interested in determining the word frequency (a count of the number of times a word is used) for a text file. The program will be executed with two file names as command line arguments. If an insufficient number of arguments are provided, Then give an appropriate error message and exit the program. The first file name (command line argument) will be the text file to process (let's call it the input file), while the second file store the results (let's call it the output file). If the input file does not exist or cannot be opened, print an appropriate error message and exit the program. There is no need to test the existence of the second file (it will be acceptable to create the output file if necessary). In the example below, a.out is the executable, roll.txt is the input file, and roll.frq is the output file.
+### `add_word(char buf[], struct WordFreq **wfpp, int size)`
+Adds a new word to the struct array if it has not been seen before. The function dynamically allocates memory for the new word and count using pointers.
 
-```
-> ./a.out roll.txt roll.frq 
-roll.txt has 1269 unique words
-```
+### `bubble_sort(struct WordFreq **wfpp, int size)`
+Sorts the words in the struct array based on their frequency using the bubble sort algorithm. It uses pointers to efficiently swap struct elements during sorting.
 
-If a valid input file is provided, the program will read the file and determine the frequency (number of appearances) every word found. Once the word frequencies have been determined, the program will print the number of words found to the screen and write the word frequencies to the output file (given as a command line argument). The output file should contain one line per unique word found, where each line has the word, a space, then the count. The word frequencies must be sorted in descending order based on the frequencies. For example, assume the input file is roll.txt then the first ten lines of the output file would contain the following.
+### `print_results(char output[], struct WordFreq **wfpp, int size)`
+Prints the sorted words and their frequencies to the output file. The function efficiently accesses the struct elements using pointers.
 
-```
-the 215
-a 98
-up 93
-to 85
-of 80
-april 78
-retrieved 77
-jump 66
-astley 59
-on 55     
-```
+## How to Use
+1. Compile the code using a C compiler: `gcc word_frequency_counter.c -o word_frequency_counter`
+2. Run the program with the input and output file names as command-line arguments: `./word_frequency_counter input_file.txt output_file.txt`
+3. The program will read the input file, calculate word frequencies, sort the words by frequency in descending order, and save the results in the output file.
 
-## Program Design
-
-Although word frequency is a simple task to describe, dealing with C-strings (as you found-out in CSC 112, maybe?) can be problematic. Your program must adhere to the following program design requirements.
-
-## Reading and Processing Words
-
-Reading the file and processing words must be done in a separate function. Once the input file has been successfully opened, read each character one at a time from the file and build C-strings.
-
-It's easiest to consider the characters in the file as a long array that your program will process one character at a time. Once a word delimiter is encountered, the preceding characters form a word and should be processed. Once the word has been processed (frequency determined), then the process starts over and the next word that is built from the characters that follow.
-
-## What is a word?
-
-Considering a file can be thought of as list of characters, assume a word is delineated (something that indicates the end) by any non-letter character; therefore, a word is **any** collection of contiguous letters. In addition, the case of the letter does **not** matter, so convert all letters to **lower case**. For example, consider the following file contents
-
-```
-thiS :)  is, a 
-   gr8 lab. OK?
-```
-
-The words in this file would be "this", "is", "a", "gr", "lab", and "ok"
-
-## Data Structures
-
-Your program will build a list of word frequencies based on the words encountered in the input file. In this situation, it might be a good idea to create a struct that stores a C-string (for a word) and count (for the frequency of that word). Note the C-string for the word must be dynamically allocated; therefore the struct would be as follows.
-
-```
-struct WordFreq {
-   char* word;  /* the word */
-   int count;   /* the word frequency */
-}; 
-```
-
-You cannot assume a maximum number of possible words, therefore the frequency list **must be dynamically allocated**. For example, in the main you would declare your word frequency list as follows
-
-```
-int main(int argc, char* argv[]) {
-   WordFreq* wordList = NULL;
-   int numWords = 0;
-
-   /* blah, blah, blah, ... */
-}
-```
-
-As a result of dynamically allocated arrays, your program must reallocate the word_list array every-time a new word is encountered, as well as deleting the old list. Remember **no memory leaks** are allowed in your program. Use valgrind (described below) to test for memory leaks.
-
-You are allowed to use **one static array** as a buffer to build C-strings (storing characters from the file as they are read). The maximum length is 20; therefore, we'll assume the maximum C-string has 19 characters (plus one for the null terminator). If a word has more than 19 characters, simply divide into multiple words (none greater than 19 characters).
-
-## Special Cases
-
-Your program is expected to handle all types of ASCII text files appropriately regardless of size. Make certain you test with files with various ASCII contents.
-
-## Program Requirements
-
-Your program must be written in ANSI C, compile cleanly (no errors or warnings with compiler flags -ansi -pedantic -Wall), pass the formatting check, and pass the tidy check using the makefile supplied. Note to run the format check enter command (at the terminal) 'make format', to run the tidy check enter (at the terminal) 'make tidy' and to compile just enter (at the terminal) 'make' The makefile is part of the git repo you cloned for this lab (as well as roll.txt used in the example above).
-
-Your program **must be called** lab3.c (containing main and other functions) must adhere to the following program design requirements.
-
-- Must meet the C Programming Style guideline for this course
-- Must compile cleanly using -ansi -pedantic -Wall -g flags with gcc (note the new flag -g) (-5 per issue)
-- Must pass clang-tidy check specified in the makefile (no user-code warnings or errors allowed, -5 per issue)
-- Must pass valgrind check specified in this assignment
-- No global variables
-- All lists must be dynamically allocated except for one fixed size buffer for processing characters
-- main function should be limited to variable declarations and function calls
-- Divide you program into an appropriate and useful number of functions
-- Limit the number of exit points in your program, write code that causes exits only in the the main function
+## Note
+Please ensure that the input file is readable and contains valid text data. If the file cannot be opened or contains non-text characters, the program will display an error message and exit.
