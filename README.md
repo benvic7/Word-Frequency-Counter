@@ -3,9 +3,9 @@
 ## Description
 This program reads a text file and calculates the number of times each word appears in the file. The program then returns a new file listing the count for each word sorted by frequency. The file names are provided as a command-line arguments.
 
-Author: Ben Vicinelli
+Author: **Ben Vicinelli**
 
-Date: February 2023
+Date: **February 2023**
 
 ## Features
 - Uses structs and pointers for word-frequency pairs: each word is represented as a character array and its corresponding frequency is stored as an integer in dynamically allocated memory.
