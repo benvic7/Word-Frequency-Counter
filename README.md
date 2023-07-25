@@ -13,20 +13,11 @@ This program reads a text file and calculates the number of times each word appe
 - Proper Memory Management: the program dynamically allocates and deallocates memory for words and data structures to avoid memory leaks and handle variable-sized inputs efficiently.
 
 ## Functionality
-### `process_characters(char filename[], char output[])`
-This function processes each character from the input file, extracts words, and calculates their frequencies. It uses pointers and dynamic memory allocation to store words and their counts in the struct array.
-
-### `is_found(char buf[], struct WordFreq **wfpp, int size)`
-Checks if a word has already been seen in the struct array. It uses pointers to efficiently access the words for comparison.
-
-### `add_word(char buf[], struct WordFreq **wfpp, int size)`
-Adds a new word to the struct array if it has not been seen before. The function dynamically allocates memory for the new word and count using pointers.
-
-### `bubble_sort(struct WordFreq **wfpp, int size)`
-Sorts the words in the struct array based on their frequency using the bubble sort algorithm. It uses pointers to efficiently swap struct elements during sorting.
-
-### `print_results(char output[], struct WordFreq **wfpp, int size)`
-Prints the sorted words and their frequencies to the output file. The function efficiently accesses the struct elements using pointers.
+- **`process_characters(char filename[], char output[])`**: This function processes each character from the input file, extracts words, and calculates their frequencies. It uses pointers and dynamic memory allocation to store words and their counts in the struct array.
+- **`is_found(char buf[], struct WordFreq **wfpp, int size)`**: Checks if a word has already been seen in the struct array. It uses pointers to efficiently access the words for comparison.
+- **`add_word(char buf[], struct WordFreq **wfpp, int size)`**: Adds a new word to the struct array if it has not been seen before. The function dynamically allocates memory for the new word and count using pointers.
+- **`bubble_sort(struct WordFreq **wfpp, int size)`**: Sorts the words in the struct array based on their frequency using the bubble sort algorithm. It uses pointers to efficiently swap struct elements during sorting.
+- **`print_results(char output[], struct WordFreq **wfpp, int size)`**: Prints the sorted words and their frequencies to the output file. The function efficiently accesses the struct elements using pointers.
 
 ## How to Use
 1. Compile the code using a C compiler: `gcc word_frequency_counter.c -o word_frequency_counter`
