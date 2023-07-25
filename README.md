@@ -4,6 +4,7 @@
 This program reads a text file and calculates the number of times each word appears in the file. The program then returns a new file listing the count for each word sorted by frequency. The file names are provided as a command-line arguments.
 
 Author: Ben Vicinelli
+
 Date: February 2023
 
 ## Features
