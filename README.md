@@ -5,7 +5,7 @@ This program reads a text file and calculates the number of times each word appe
 
 ## Author
 - Ben Vicinelli
-- Date: Feb. 8, 2023
+- Date: February 2023
 
 ## Features
 - Uses structs and pointers for word-frequency pairs: each word is represented as a character array and its corresponding frequency is stored as an integer in dynamically allocated memory.
