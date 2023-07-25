@@ -20,9 +20,10 @@ This program reads a text file and calculates the number of times each word appe
 - **`print_results(char output[], struct WordFreq **wfpp, int size)`**: Prints the sorted words and their frequencies to the output file. The function efficiently accesses the struct elements using pointers.
 
 ## How to Use
-1. Compile the code using a C compiler: `gcc word_frequency_counter.c -o word_frequency_counter`
-2. Run the program with the input and output file names as command-line arguments: `./word_frequency_counter input_file.txt output_file.txt`
+1. Compile the code using a C compiler: `gcc main.c`
+2. Run the program with the input and output file names as command-line arguments: `./a.out input.txt output.txt`
 3. The program will read the input file, calculate word frequencies, sort the words by frequency in descending order, and save the results in the output file.
+4. Please do not to delete the 'a.out' file as it's needed to run the program efficiently.
 
 ## Note
-Please ensure that the input file is readable and contains valid text data. If the file cannot be opened or contains non-text characters, the program will display an error message and exit.
+Please ensure that the input file is readable and contains valid text data. An example input file named "input.txt" is provided for your convenience, which you can use or modify for testing purposes.
