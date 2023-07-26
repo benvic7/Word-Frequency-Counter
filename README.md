@@ -1,11 +1,13 @@
 # Word Frequency Counter
 
 ## Description
-This program reads a text file and calculates the number of times each word appears in the file. The program then returns a new file listing the count for each word sorted by frequency. The file names are provided as a command-line arguments.
+This program reads a text file and calculates the number of times each word appears in the file. The program then returns a new file listing the count for each word sorted by frequency. The file names are provided as a command-line arguments. I created this project as part of my CSC 250: Computer Systems I class.
 
 Author: **Ben Vicinelli**
 
 Date: **February 2023**
+
+Langauge: **C**
 
 ## Features
 - Uses structs and pointers for word-frequency pairs: each word is represented as a character array and its corresponding frequency is stored as an integer in dynamically allocated memory.
