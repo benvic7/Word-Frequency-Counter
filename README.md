@@ -23,7 +23,7 @@ Langauge: **C**
 
 ## How to Use
 1. Clone this repository: `git clone https://github.com/benvic7/Word-Frequency-Counter.git`.
-2. Run the program with the input and output file names as command-line arguments: `./a.out input.txt output.txt`
+2.  Navigate to the project directory and run the program with the input and output file names as command-line arguments: `./a.out input.txt output.txt`
 3. The program will read the input file, calculate word frequencies, sort the words by frequency in descending order, and save the results in the output file.
 
 ## Note
